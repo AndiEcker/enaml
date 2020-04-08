@@ -173,14 +173,14 @@ class QtWidget(QtToolkitObject, ProxyWidget):
 
         """
         widget = self.focus_target()
-        if not widget.focusPolicy & Qt.TabFocus:
+        if not widget.focusPolicy() & Qt.TabFocus:
             return False
         if not widget.isEnabled():
             return False
         if not widget.isVisibleTo(widget.window()):
             return False
         widget.setFocus(reason)
-        return False
+        return widget.hasFocus()
 
     def focus_target(self):
         """ Return the current focus target for a focus request.
